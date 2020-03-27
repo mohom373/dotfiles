@@ -18,7 +18,7 @@
 ;
 [colors]
 background = ${xrdb:color0:#222}
-foreground = ${xrdb:color7:#ffffff}
+foreground = ${xrdb:color7:#222}
 foreground-alt = ${xrdb:color5:#222}
 primary = ${xrdb:color1:#222}
 secondary = ${xrdb:color2:#222}
@@ -54,9 +54,8 @@ override-redirect = false
 ;-------;
 
 font-0 = Hack:size=10;3
-font-1 = "FontAwesome 5 Free:style=Solid:pixelsize=12;3"
-font-2 = "FontAwesome 5 Free:style=Regular:pixelsize=12;3"
-font-3 = "FontAwesome 5 Brands:pixelsize=12;3"
+font-1 = "FontAwesome:style=Solid:pixelsize=12;3"
+font-2 = "FontAwesome:style=Regular:pixelsize=12;3"
 
 ;--------;
 ; COLORS ;
@@ -75,7 +74,7 @@ padding-left = 2
 padding-right = 2
 module-margin = 1.5
 
-modules-left = alsa backlight battery spotify
+modules-left = backlight battery pulseaudio spotify 
 modules-center = i3
 modules-right = wlan cpu date time
 
@@ -96,7 +95,7 @@ strip-wsnumbers = true
 enable-scroll = false
 
 label-unfocused-foreground = #afafaf
-label-focused-foreground = #c5a9f9
+label-focused-foreground = ${colors.foreground} 
 label-urgent-foreground = #ff0000
 
 [module/time]
@@ -117,7 +116,7 @@ type = custom/script
 interval = 1
 format-prefix = " "
 format = <label>
-exec = python /home/moe/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
+exec = python /home/moe/.config/polybar/scripts/spotify_status.py -f '{play_pause} {song} - {artist} - {album}' 
 format-underline = #1db954
 
 
@@ -142,68 +141,54 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 
-[module/alsa]
-type = internal/alsa
 
-; Soundcard to be used
-; Usually in the format hw:# where # is the card number
-; You can find the different card numbers in `/proc/asound/cards`
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
+[module/pulseaudio]
+type = internal/pulseaudio
 
-; Name of the master, speaker and headphone mixers
-; Use the following command to list available mixer controls:
-; $ amixer scontrols | sed -nr "s/.*'([[:alnum:]]+)'.*/\1/p"
-; If master, speaker or headphone-soundcard isn't the default, 
-; use `amixer -c # scontrols` instead where # is the number 
-; of the master, speaker or headphone soundcard respectively
-;
-; Default: Master
-master-mixer = Master
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
 
-; Optionally define speaker and headphone mixers
-; Default: none
-speaker-mixer = Speaker
-; Default: none
-headphone-mixer = Headphone
-
-; NOTE: This is required if headphone_mixer is defined
-; Use the following command to list available device controls
-; $ amixer controls | sed -r "/CARD/\!d; s/.*=([0-9]+).*name='([^']+)'.*/printf '%3.0f: %s\n' '\1' '\2'/e" | sort
-; You may also need to use `amixer -c # controls` as above for the mixer names
-; Default: none
-headphone-id = 9
-
-; Use volume mapping (similar to amixer -M and alsamixer), where the increase in volume is linear to the ear
-; Default: false
-mapped = true
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
 
 ; Interval for volume increase/decrease (in percent points)
 ; Default: 5
 interval = 5
 
-[module/mpd]
-type = internal/mpd
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
 
-label-offline = mpd is offline
-format-online = <icon-prev> <toggle> <icon-next> <label-song>
-format-offline = <label-offline>
-host = 127.0.0.1
-port = 6600
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+;format-muted = <label-muted>
 
-label-song-maxlen = 25
-label-song-ellipsis = true
+; Available tokens:
+;   %percentage% (default)
+;   %decibels% (unreleased)
+;label-volume = %percentage%%
 
-bar-progress-width = 10
-bar-progress-indicator = |
-bar-progress-fill = ─
-bar-progress-empty = ─
+; Available tokens:
+;   %percentage% (default)
+;   %decibels% (unreleased)
+label-muted =  muted
+label-muted-foreground = #666
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 =  
+ramp-volume-1 =  
+ramp-volume-2 =  
+
+; Right and Middle click (unreleased)
+click-right = pavucontrol &
+; click-middle =
+
 
 [module/backlight]
 type = internal/backlight

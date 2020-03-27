@@ -15,12 +15,10 @@ font pango: Noto Sans 8
 floating_modifier $super
 
 #autostart
-# exec --no-startup-id hsetroot -center ~/.wallpaper.png
 exec_always --no-startup-id /home/moe/.config/polybar/launch.sh
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
 exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScollDelta=-113
-exec --no-startup-id wal -i /home/moe/Wallpapers
 exec xrandr --dpi 220
 
 # start a terminal
@@ -32,10 +30,9 @@ bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show dru
 
 # common apps keybinds
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
-bindsym $super+l exec i3lock -i ~/.wallpaper.png
-bindsym $super+Shift+w exec firefox
-bindsym $super+Shift+f exec thunar;workspace 3;focus
-bindsym $super+Shift+g exec geany
+bindsym $super+l exec i3lock -i $HOME/Wallpapers/squid.png 
+bindsym $super+Shift+b exec chromium-browser;workspace 2;focus
+bindsym $super+Shift+t exec /usr/local/bin/auto-pywal-discord
 
 #change volume
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+
@@ -140,9 +137,11 @@ bindsym $super+r mode "resize"
 
 # window rules, you can find the window class using xprop
 for_window [class=".*"] border pixel 4
+for_window [class="Spotify"] move to workspace 3
+
 assign [class=URxvt] 1
 assign [class=Firefox|Transmission-gtk] 2
-assign [class=Thunar|File-roller] 3
+assign [class=Spotify|File-roller] 3
 assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] 4
 assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 5
 assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
