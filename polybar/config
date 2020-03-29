@@ -147,7 +147,7 @@ type = internal/pulseaudio
 
 ; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
 ; If not, uses default sink
-sink = alsa_output.pci-0000_12_00.3.analog-stereo
+sink = 
 
 ; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
 ; Default: true
@@ -189,7 +189,6 @@ ramp-volume-2 = 
 click-right = pavucontrol &
 ; click-middle =
 
-
 [module/backlight]
 type = internal/backlight
 
@@ -218,14 +217,3 @@ label-disconnected =  Not Connected
 [module/cpu]
 type = internal/cpu
 label =  %percentage%%
-
-
-[module/memory]
-type = internal/memory
-label =  %gb_used%
-
-[module/network]
-type = internal/network
-interface = wlp2s0
-label-connected =  %downspeed% |  %upspeed%
-

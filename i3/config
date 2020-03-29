@@ -20,13 +20,15 @@ exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
 exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScollDelta=-113
 exec xrandr --dpi 220
+exec /usr/local/bin/auto-pywal-discord
 
 # start a terminal
-bindsym $super+Return exec i3-sensible-terminal
+bindsym $super+Return exec kitty #i3-sensible-terminal
 
 # start dmenu (a program launcher)
 bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
-bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
+# bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
+bindsym $super+d exec rofi -show drun 
 
 # common apps keybinds
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
@@ -140,13 +142,13 @@ for_window [class=".*"] border pixel 4
 for_window [class="Spotify"] move to workspace 3
 
 assign [class=URxvt] 1
-assign [class=Firefox|Transmission-gtk] 2
+assign [class=Firefox|Chromium-browser] 2
 assign [class=Spotify|File-roller] 3
-assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] 4
+assign [class=discord|Evince|Gucharmap|Soffice|libreoffice*] 4
 assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 5
 assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
 for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
-for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
+for_window [class=URxvt|discord|Chromium-browser|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
 # colour of border, background, text, indicator, and child_border
