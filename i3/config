@@ -16,11 +16,12 @@ floating_modifier $super
 
 #autostart
 exec_always --no-startup-id /home/moe/.config/polybar/launch.sh
+exec --no-startup-id lxpolkit
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
 exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScollDelta=-113
-exec xrandr --dpi 220
 exec /usr/local/bin/auto-pywal-discord
+exec xrandr --dpi 220
 
 # start a terminal
 bindsym $super+Return exec kitty #i3-sensible-terminal
@@ -158,4 +159,3 @@ client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
-

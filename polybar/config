@@ -45,7 +45,7 @@ border-left-size = 15
 ;----------;
 
 bottom = false
-monitor = eDP1
+monitor = eDP1 
 wm-restack = none
 override-redirect = false
 
@@ -217,3 +217,5 @@ label-disconnected =  Not Connected
 [module/cpu]
 type = internal/cpu
 label =  %percentage%%
+
+; vim:ft=dosini

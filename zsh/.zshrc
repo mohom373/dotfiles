@@ -4,6 +4,9 @@ export PATH=/home/moe/.nvm/versions/node/v13.8.0/bin:~/.local/bin:/usr/local/sbi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Lazy nvm 
+export NVM_LAZY_LOAD=true
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -71,7 +74,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract web-search yum git-extras docker vagrant)
+plugins=(git extract zsh-nvm zsh-better-npm-completion git-extras zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,6 +104,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias python=python3
+alias sus="sudo systemctl suspend"
+alias gcc_w="gcc -Wall -Wextra -std=c99 -pedantic -g"
+alias gcc_pintos="gcc -m32 -Wall -Wextra -std=c99 -pedantic -g"
+alias :q="exit"
+alias vim="nvim"
 
 # Basic auto/tab complete:
 autoload -Uz compinit
@@ -141,8 +150,12 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH=/home/linuxbrew/.linuxbrew/bin:/home/moe/.nvm/versions/node/v13.8.0/bin:/home/moe/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/bin/python3:/usr/local/games:/snap/bin:/home/moe/.emacs.d/bin:/home/moe/.local/kitty.app/bin:/home/moe/.cargo/bin:/home/moe/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/apache-maven-3.6.3/bin:java-11-openjdk-amd64:/snap/bin:/home/moe/Dev/Uni/TDIU16_PINTOS/tdiu16-labs/src/utils
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-alias python=python3
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-alias sus="sudo systemctl suspend"
+
+
