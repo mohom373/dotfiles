@@ -29,7 +29,6 @@
 "=================================================================================================================
 
 
-
 " Plugins will be downloaded under the specified directory.
 call plug#begin('$HOME/.config/nvim/plugged')
 
