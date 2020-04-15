@@ -1,4 +1,3 @@
-
 "
 "                                        ________ ++     ________
 "                                       /VVVVVVVV\++++  /VVVVVVVV\
@@ -34,8 +33,13 @@ call plug#begin('$HOME/.config/nvim/plugged')
 
 " Declare the list of plugins.
 Plug 'itchyny/lightline.vim'
-"Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
+" Themes
 Plug 'dylanaraps/wal.vim'
+Plug 'sainnhe/gruvbox-material'
+Plug 'morhetz/gruvbox'
+Plug 'shinchu/lightline-gruvbox.vim'
+
 Plug 'scrooloose/nerdtree'
 " easy-align plugin
 Plug 'junegunn/vim-easy-align'
@@ -59,7 +63,7 @@ nmap ga <Plug>(EasyAlign)
 
 
 " Ale settings
-"let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 1
 
 " Set some settings
 set nocompatible            " disable compatibility to old-time vi
@@ -76,6 +80,8 @@ set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set colorcolumn=80          " column line 
+" Only set this if wal is not used as colorscheme
+set termguicolors
 
 set wildmode=longest,list   " get bash-like tab completions
 set laststatus=2	        " Always show the status line at the bottom
@@ -95,7 +101,9 @@ let mapleader=" "
 filetype plugin indent on   " allows auto-indenting depending on file type
 
 " Colorscheme and syntax
-colorscheme wal
+" colorscheme wal
+colorscheme gruvbox-material
+
 syntax on                   " syntax highlighting
 
 " Try to prevent bad habits like using the arrow keys for movement. This is
@@ -126,7 +134,7 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
-" Coc settings
+" Coc settings start
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -267,4 +275,11 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-let g:coc_node_path = '$HOME/.nvm/versions/node/v13.12.0/bin/node'
+let g:coc_node_path = '/home/moe/.nvm/versions/node/v13.12.0/bin/node'
+
+" Coc settings end
+
+" Lighline settings start
+let g:lightline = {}
+let g:lightline.colorscheme = 'gruvbox'
+" Lightline settings end
