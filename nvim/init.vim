@@ -14,18 +14,22 @@
 "                                        |VVV/'+++++++++
 "                                        'V/'   ++++++
 "                                                 ++
-"    __/\\\________/\\\__/\\\\\\\\\\\__/\\\\____________/\\\\____/\\\\\\\\\____________/\\\\\\\\\_
-"     _\/\\\_______\/\\\_\/////\\\///__\/\\\\\\________/\\\\\\__/\\\///////\\\_______/\\\////////__
-"      _\//\\\______/\\\______\/\\\_____\/\\\//\\\____/\\\//\\\_\/\\\_____\/\\\_____/\\\/___________
-"       __\//\\\____/\\\_______\/\\\_____\/\\\\///\\\/\\\/_\/\\\_\/\\\\\\\\\\\/_____/\\\_____________
-"        ___\//\\\__/\\\________\/\\\_____\/\\\__\///\\\/___\/\\\_\/\\\//////\\\____\/\\\_____________
-"         ____\//\\\/\\\_________\/\\\_____\/\\\____\///_____\/\\\_\/\\\____\//\\\___\//\\\____________
-"          _____\//\\\\\__________\/\\\_____\/\\\_____________\/\\\_\/\\\_____\//\\\___\///\\\__________
-"           ______\//\\\________/\\\\\\\\\\\_\/\\\_____________\/\\\_\/\\\______\//\\\____\////\\\\\\\\\_
-"            _______\///________\///////////__\///______________\///__\///________\///________\/////////__
-"=================================================================================================================
+"
+"                   "=======================================================
+"                   "=    ==  =======  ==    ==        ==       =====     ==
+"                   "==  ===   ======  ===  ======  =====  ====  ===  ===  =
+"                   "==  ===    =====  ===  ======  =====  ====  ==  =======
+"                   "==  ===  ==  ===  ===  ======  =====  ===   ==  =======
+"                   "==  ===  ===  ==  ===  ======  =====      ====  =======
+"                   "==  ===  ====  =  ===  ======  =====  ====  ==  =======
+"                   "==  ===  =====    ===  ======  =====  ====  ==  =======
+"                   "==  ===  ======   ===  ======  =====  ====  ===  ===  =
+"                   "=    ==  =======  ==    =====  =====  ====  ====     ==
+"                   "=======================================================
+"==============================================================================
 " MUST HAVE'S
-"=================================================================================================================
+"==============================================================================
+
 
 
 " Plugins will be downloaded under the specified directory.
@@ -35,12 +39,19 @@ call plug#begin('$HOME/.config/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'dense-analysis/ale'
 " Themes
+Plug 'ntk148v/vim-horizon'
 Plug 'dylanaraps/wal.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
 
 Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+" vista plugin
+Plug 'liuchengxu/vista.vim'
+" undotree plugin
+Plug 'mbbill/undotree'
+
 " easy-align plugin
 Plug 'junegunn/vim-easy-align'
 
@@ -53,6 +64,23 @@ Plug 'junegunn/fzf.vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
+" leader key 
+let mapleader=" "
+
+" General remapping start
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>u :UndotreeShow<bar> UndotreeFocus<CR>
+nnoremap <leader>vs :wincmd v<CR>
+"nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+"nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <silent> <Leader>+ :vertical resize +5<CR>
+nnoremap <silent> <Leader>- :vertical resize -5<CR>
+
+" General remapping end
+
 
 " EasyAlign settings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -62,8 +90,15 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 
-" Ale settings
+" Ale settings start
 let g:ale_completion_enabled = 1
+" Ale setting end
+
+" NERDtree settings start 
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+map <leader>n :NERDTreeToggle<CR>
+" NERDtree settings end
+
 
 " Set some settings
 set nocompatible            " disable compatibility to old-time vi
@@ -79,9 +114,14 @@ set softtabstop=4           " see multiple spaces as tabstops so <BS> does the r
 set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
+set smartindent
 set colorcolumn=80          " column line 
+set nobackup
+set undodir=~/.config/nvim/undodir
+set undofile
 " Only set this if wal is not used as colorscheme
 set termguicolors
+set splitright
 
 set wildmode=longest,list   " get bash-like tab completions
 set laststatus=2	        " Always show the status line at the bottom
@@ -95,14 +135,13 @@ augroup numbertoggle
 augroup END
 
 
-" leader key 
-let mapleader=" "
 
 filetype plugin indent on   " allows auto-indenting depending on file type
 
 " Colorscheme and syntax
 " colorscheme wal
-colorscheme gruvbox-material
+" colorscheme gruvbox-material
+colorscheme horizon
 
 syntax on                   " syntax highlighting
 
@@ -281,5 +320,5 @@ let g:coc_node_path = '/home/moe/.nvm/versions/node/v13.12.0/bin/node'
 
 " Lighline settings start
 let g:lightline = {}
-let g:lightline.colorscheme = 'gruvbox'
+let g:lightline.colorscheme = 'horizon'
 " Lightline settings end
