@@ -15,17 +15,17 @@
 "                                        'V/'   ++++++
 "                                                 ++
 "
-"                   "=======================================================
-"                   "=    ==  =======  ==    ==        ==       =====     ==
-"                   "==  ===   ======  ===  ======  =====  ====  ===  ===  =
-"                   "==  ===    =====  ===  ======  =====  ====  ==  =======
-"                   "==  ===  ==  ===  ===  ======  =====  ===   ==  =======
-"                   "==  ===  ===  ==  ===  ======  =====      ====  =======
-"                   "==  ===  ====  =  ===  ======  =====  ====  ==  =======
-"                   "==  ===  =====    ===  ======  =====  ====  ==  =======
-"                   "==  ===  ======   ===  ======  =====  ====  ===  ===  =
-"                   "=    ==  =======  ==    =====  =====  ====  ====     ==
-"                   "=======================================================
+"                    =======================================================
+"                    =    ==  =======  ==    ==        ==       =====     ==
+"                    ==  ===   ======  ===  ======  =====  ====  ===  ===  =
+"                    ==  ===    =====  ===  ======  =====  ====  ==  =======
+"                    ==  ===  ==  ===  ===  ======  =====  ===   ==  =======
+"                    ==  ===  ===  ==  ===  ======  =====      ====  =======
+"                    ==  ===  ====  =  ===  ======  =====  ====  ==  =======
+"                    ==  ===  =====    ===  ======  =====  ====  ==  =======
+"                    ==  ===  ======   ===  ======  =====  ====  ===  ===  =
+"                    =    ==  =======  ==    =====  =====  ====  ====     ==
+"                    =======================================================
 "==============================================================================
 " MUST HAVE'S
 "==============================================================================
@@ -44,7 +44,11 @@ Plug 'dylanaraps/wal.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
+" Dart-lang plugins
+Plug 'dart-lang/dart-vim-plugin'
+"Plug 'thosakwe/vim-flutter'
 
+Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 " vista plugin
@@ -82,13 +86,25 @@ nnoremap <silent> <Leader>- :vertical resize -5<CR>
 " General remapping end
 
 
-" EasyAlign settings
+" EasyAlign settings start
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+" EasyAlign settings end
 
+" Dart-lang settings start
+let g:dart_style_guide = 2
+"let g:dart_format_on_save = 1
+" Flutter settings start 
+nnoremap <leader>fa :FlutterRun<CR>
+nnoremap <leader>fq :FlutterQuit<CR>
+nnoremap <leader>fr :FlutterHotReload<CR>
+nnoremap <leader>fR :FlutterHotRestart<CR>
+nnoremap <leader>fD :FlutterVisualDebug<CR>
+" Flutter settigns end
+" Dart settings end
 
 " Ale settings start
 let g:ale_completion_enabled = 1

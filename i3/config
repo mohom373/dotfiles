@@ -17,6 +17,8 @@ floating_modifier $super
 #autostart
 exec_always --no-startup-id /home/moe/.config/polybar/launch.sh
 exec --no-startup-id lxpolkit
+exec_always xmodmap -e "clear lock" #disable caps lock switch
+exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
 exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScollDelta=-113
@@ -37,7 +39,8 @@ bindsym $super+l exec i3lock -i $HOME/Wallpapers/squid.png
 bindsym $super+Shift+b exec chromium-browser;workspace 2;focus
 bindsym $super+Shift+t exec /usr/local/bin/auto-pywal-discord
 
-#change volume
+
+# change volume
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%-
 bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
@@ -151,7 +154,7 @@ assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|E
 for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
 for_window [class=URxvt|discord|Chromium-browser|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
-
+for_window [title="Android Emulator - pixel:5554"] floating enable move right 1150px,move down 265px resize set 2560 1440 
 # colour of border, background, text, indicator, and child_border
 client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
 client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f

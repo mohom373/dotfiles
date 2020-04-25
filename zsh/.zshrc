@@ -8,16 +8,16 @@ export ZSH=$HOME/.oh-my-zsh
 export NVM_LAZY_LOAD=true
 
 # Load Antigen
-#source /home/moe/.config/antigen/antigen.zsh
+source /home/moe/.config/antigen/antigen.zsh
 # Load Antigen configurations
-#antigen init ~/config/antigen/.antigenrc
+antigen init ~/.antigenrc
 
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 
 # Path name theme
 #PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
@@ -80,8 +80,8 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract zsh-better-npm-completion git-extras zsh-autosuggestions)
-plugins+=(zsh-nvm)
+# plugins=(git extract zsh-better-npm-completion git-extras zsh-autosuggestions)
+# plugins+=(zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,6 +117,7 @@ alias gcc_w="gcc -Wall -Wextra -std=c99 -pedantic -g"
 alias gcc_pintos="gcc -m32 -Wall -Wextra -std=c99 -pedantic -g"
 alias :q="exit"
 alias vim="nvim"
+alias ls="lsd -F"
 
 # Basic auto/tab complete:
 autoload -Uz compinit
@@ -158,11 +159,13 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export PATH=/home/linuxbrew/.linuxbrew/bin:/home/moe/.nvm/versions/node/v13.12.0/bin:/home/moe/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/bin/python3:/usr/local/games:/snap/bin:/home/moe/.emacs.d/bin:/home/moe/.local/kitty.app/bin:/home/moe/.cargo/bin:/home/moe/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/apache-maven-3.6.3/bin:java-11-openjdk-amd64:/snap/bin:/home/moe/Dev/Uni/TDIU16_PINTOS/tdiu16-labs/src/utils:/home/moe/.nvm/versions/node/v13.12.0/bin/node
+export PATH=/home/linuxbrew/.linuxbrew/bin:/home/moe/.nvm/versions/node/v13.12.0/bin:/home/moe/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/bin/python3:/usr/local/games:/snap/bin:/home/moe/.emacs.d/bin:/home/moe/.local/kitty.app/bin:/home/moe/.cargo/bin:/home/moe/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/apache-maven-3.6.3/bin:java-11-openjdk-amd64:/snap/bin:/home/moe/Dev/Uni/TDIU16_PINTOS/tdiu16-labs/src/utils:/home/moe/.nvm/versions/node/v13.12.0/bin/node:/home/moe/apps/flutter/bin:/home/moe/apps/android/cmdline-tools/latest/bin:/opt/android-studio/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# pure prompt settings
+autoload -U promptinit; promptinit
+prompt pure
+
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
-
