@@ -1,14 +1,17 @@
+zmodload zsh/zprof
+# Load Antigen
+source /home/moe/.config/antigen/antigen.zsh
+
+
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/home/moe/.nvm/versions/node/v13.12.0/bin:~/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/bin/python3:/usr/local/games:/snap/bin:$HOME/.emacs.d/bin:$PATH
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+#export ZSH=$HOME/.antigen/bundles/robbyrussell/oh-my-zsh
+
 
 # Lazy nvm 
 export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
 
-# Load Antigen
-source /home/moe/.config/antigen/antigen.zsh
 # Load Antigen configurations
 antigen init ~/.antigenrc
 
@@ -83,7 +86,7 @@ antigen init ~/.antigenrc
 # plugins=(git extract zsh-better-npm-completion git-extras zsh-autosuggestions)
 # plugins+=(zsh-nvm)
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -121,10 +124,16 @@ alias ls="lsd -F"
 
 # Basic auto/tab complete:
 autoload -Uz compinit
-zstyle ':completion:*' menu select
+
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
 zmodload zsh/complist
-compinit
+zstyle ':completion:*' menu select
 _comp_options+=(globdots)		# Include hidden files.
+compinit -C
+
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
@@ -167,5 +176,4 @@ export PATH=/home/linuxbrew/.linuxbrew/bin:/home/moe/.nvm/versions/node/v13.12.0
 autoload -U promptinit; promptinit
 prompt pure
 
-# Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /home/moe/.antigen/bundles/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

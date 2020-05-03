@@ -45,7 +45,7 @@ border-left-size = 15
 ;----------;
 
 bottom = false
-monitor = eDP1 
+monitor = ${env:MONITOR:}  
 wm-restack = none
 override-redirect = false
 
