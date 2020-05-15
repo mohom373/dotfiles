@@ -167,13 +167,18 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+#export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export PATH=/home/linuxbrew/.linuxbrew/bin:/home/moe/.nvm/versions/node/v13.12.0/bin:/home/moe/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/bin/python3:/usr/local/games:/snap/bin:/home/moe/.emacs.d/bin:/home/moe/.local/kitty.app/bin:/home/moe/.cargo/bin:/home/moe/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/apache-maven-3.6.3/bin:java-11-openjdk-amd64:/snap/bin:/home/moe/Dev/Uni/TDIU16_PINTOS/tdiu16-labs/src/utils:/home/moe/.nvm/versions/node/v13.12.0/bin/node:/home/moe/apps/flutter/bin:/home/moe/apps/android/cmdline-tools/latest/bin:/opt/android-studio/bin
+export GOPATH="$HOME/go"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # pure prompt settings
 autoload -U promptinit; promptinit
 prompt pure
+
+# Autojump source
+. /usr/share/autojump/autojump.sh
+
 
 source /home/moe/.antigen/bundles/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
