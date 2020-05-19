@@ -1,6 +1,6 @@
 # i3 gaps stuff
-gaps inner 15
-gaps outer 15
+gaps inner 5
+gaps outer 2
 
 
 # set modifier
@@ -9,13 +9,14 @@ set $alt Mod1
 set $refresh_i3status killall SIGUSR1 i3status
 
 # set font
-font pango: Noto Sans 8
+font pango: 3270-Medium Nerd Font Complete 10
 
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
 #autostart
 exec_always --no-startup-id /home/moe/.config/polybar/launch.sh
+exec setxkbmap -layout us,se -option grp:alt_shift_toggle
 exec --no-startup-id lxpolkit
 exec_always xmodmap -e "clear lock" #disable caps lock switch
 exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
@@ -23,21 +24,20 @@ exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
 exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScollDelta=-113
 exec /usr/local/bin/auto-pywal-discord
-exec setxkbmap -layout us,se -option grp:alt_shift_toggle
 exec xrandr --dpi 220
 
 # start a terminal
 bindsym $super+Return exec kitty #i3-sensible-terminal
 
 # start dmenu (a program launcher)
-bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
+bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn '3270-Medium Nerd Font Complete 10:size=8'"
 # bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
 bindsym $super+d exec rofi -show drun 
 
 # common apps keybinds
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
 bindsym $super+l exec i3lock -i $HOME/Wallpapers/squid.png 
-bindsym $super+Shift+b exec chromium-browser;workspace 2;focus
+bindsym $super+Shift+b exec chromium-browser --force-device-scale-factor=1.5;workspace $ws2;focus
 bindsym $super+Shift+t exec /usr/local/bin/auto-pywal-discord
 
 
@@ -61,10 +61,10 @@ bindsym $super+Shift+q kill
 bindsym $alt+F4 kill
 
 # change focus
-bindsym $super+Left focus left
+bindsym $super+j focus left
 bindsym $super+Down focus down
 bindsym $super+Up focus up
-bindsym $super+Right focus right
+bindsym $super+k focus right
 
 # move focused window
 bindsym $super+Shift+Left move left
@@ -82,44 +82,64 @@ bindsym $super+v split v
 bindsym $super+f fullscreen toggle
 
 # change container layout split
-bindsym $super+s layout toggle split
+# bindsym $super+s layout toggle split
+bindsym $super+s layout stacking
+bindsym $super+w layout tabbed
+bindsym $super+e layout toggle split
 
 # toggle tiling / floating
 bindsym $super+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $super+Shift+space focus mode_toggle
+#Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1:  "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
 
 # switch to workspace
 bindsym $alt+Control+Right workspace next
 bindsym $alt+Control+Left workspace prev
-bindsym $super+1 workspace 1
-bindsym $super+2 workspace 2
-bindsym $super+3 workspace 3
-bindsym $super+4 workspace 4
-bindsym $super+5 workspace 5
-bindsym $super+6 workspace 6
+bindsym $super+1 workspace number $ws1
+bindsym $super+2 workspace number $ws2
+bindsym $super+3 workspace number $ws3
+bindsym $super+4 workspace number $ws4
+bindsym $super+5 workspace number $ws5
+bindsym $super+6 workspace number $ws6
+bindsym $super+7 workspace number $ws7
+bindsym $super+8 workspace number $ws8
+bindsym $super+9 workspace number $ws9
 
 # move focused container to workspace
-bindsym $super+Shift+1 move container to workspace 1
-bindsym $super+Shift+2 move container to workspace 2
-bindsym $super+Shift+3 move container to workspace 3
-bindsym $super+Shift+4 move container to workspace 4
-bindsym $super+Shift+5 move container to workspace 5
-bindsym $super+Shift+6 move container to workspace 6
+bindsym $super+Shift+1 move container to workspace $ws1
+bindsym $super+Shift+2 move container to workspace $ws2
+bindsym $super+Shift+3 move container to workspace $ws3
+bindsym $super+Shift+4 move container to workspace $ws4
+bindsym $super+Shift+5 move container to workspace $ws5
+bindsym $super+Shift+6 move container to workspace $ws6
+bindsym $super+Shift+7 move container to workspace $ws7
+bindsym $super+Shift+8 move container to workspace $ws8
+bindsym $super+Shift+9 move container to workspace $ws9
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $super+Shift+r restart
 
 # exit i3
-bindsym $super+e exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+bindsym $super+Shift+e exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
+        bindsym $super+h resize shrink width 5 px or 5 ppt
+        bindsym $super+j resize grow height 5 px or 5 ppt
+        bindsym $super+k resize shrink height 5 px or 5 ppt
+        bindsym $super+l resize grow width 5 px or 5 ppt
         bindsym Return mode "default"
 }
 bindsym $super+r mode "resize"
@@ -144,13 +164,13 @@ bindsym $super+r mode "resize"
 
 # window rules, you can find the window class using xprop
 for_window [class=".*"] border pixel 4
-for_window [class="Spotify"] move to workspace 3
+for_window [class="Spotify"] move to workspace $ws3
 
 assign [class=URxvt] 1
-assign [class=Firefox|Chromium-browser] 2
-assign [class=Spotify|File-roller] 3
-assign [class=discord|Evince|Gucharmap|Soffice|libreoffice*] 4
-assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 5
+assign [class=Firefox|Chromium-browser] $ws2
+assign [class=Spotify|File-roller] $ws3
+assign [class=discord|Evince|Gucharmap|Soffice|libreoffice*] $ws4
+assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] $ws5
 assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
 for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
 for_window [class=URxvt|discord|Chromium-browser|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
