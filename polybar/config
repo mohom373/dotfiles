@@ -56,6 +56,7 @@ override-redirect = false
 font-0 = Hack:size=10;3
 font-1 = "FontAwesome:style=Solid:pixelsize=12;3"
 font-2 = "FontAwesome:style=Regular:pixelsize=12;3"
+font-3 = Feather:size=10;3
 
 ;--------;
 ; COLORS ;
@@ -155,15 +156,43 @@ dpi-y = 124
 ;---------;
 
 [module/i3]
+;type = internal/i3
+;
+;pin-workspaces = true
+;strip-wsnumbers = true
+;enable-scroll = false
+;
+;label-unfocused-foreground = #afafaf
+;label-focused-foreground = ${colors.foreground} 
+;label-urgent-foreground = #ff0000
 type = internal/i3
+pin-workspace = false
+index-sort = true
 
-pin-workspaces = true
-strip-wsnumbers = true
-enable-scroll = false
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = false
+format = <label-state> <label-mode>
+label-focused = %name%
+label-focused-padding = 3
+label-focused-background = "#82aaff"
+label-focused-foreground = "#212121"
 
-label-unfocused-foreground = #afafaf
-label-focused-foreground = ${colors.foreground} 
-label-urgent-foreground = #ff0000
+
+label-unfocused = %name%
+label-unfocused-padding = 3
+label-visible = %name%
+label-visible-padding = 2
+label-mode = %mode%
+
+Material theme
+label-mode-background = "#f07178"
+label-mode-foreground = "#212121"
+label-mode-padding = 2
+label-urgent = %name%
+label-urgent-padding = 3
+
 
 [module/time]
 type = internal/date
