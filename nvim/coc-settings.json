@@ -1,0 +1,20 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": [
+        "dart",
+        "python",
+        "javascript",
+        "yaml",
+        "json",
+        "html",
+        "css",
+    ],
+
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+
+    "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
+    "eslint.nodePath": "/home/moe/.nvm/versions/node/v13.12.0/lib/node_modules"
+}
+ 
+
+
